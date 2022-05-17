@@ -1,0 +1,71 @@
+# HKitClass
+
+public class PoketMonBag {
+	int MAXNUM =3;
+	
+	PoketMon[] poketmonBag = new PoketMon[3];
+	int choice = 0;
+	int choice2 = 0;
+	String choice3 = "";
+	int catchpoint=0;
+	PoketMon tmp;
+	
+	PoketMon catchPoketmon() {
+		System.out.println("장소를 선택하세요");
+		System.out.println("1번 불꽃사막");
+		System.out.println("2번 물의정원");
+		System.out.println("3번 풀숲");
+		System.out.println("4번 돌아가기");
+		choice=Integer.parseInt(Read.sc.nextLine());
+		switch(choice) {
+		case 1:
+			System.out.println("불꽃사막에 오신것을 환영합니다.");
+			System.out.println("출현 포켓몬 => 파이리 , 닌자");
+			choice2=Random.random.nextInt(0,2);
+			if(choice2==0) {
+				System.out.println("파이리가 나타났습니다");
+				System.out.println("잡으시겠습니까?");
+				choice3=Read.sc.nextLine();
+				if(choice3.equals("y")) {
+					PoketMon piri= new Piri();
+					if(Random.random.nextInt(0, 101)<=piri.percent) {
+						System.out.println("잡았습니다!");
+						tmp=piri;
+						return tmp;
+					}else {
+						System.out.println("실패했습니다.");
+						System.out.println("메뉴로돌아갑니다.");
+						piri=null;
+						return null;
+					}
+				}else {
+					System.out.println("메뉴로돌아갑니다.");
+					return null;
+				}
+			}else if(choice2==1) {
+				System.out.println("닌자가 나타났습니다");
+				System.out.println("잡으시겠습니까?");
+				choice3=Read.sc.nextLine();
+				if(choice3.equals("y")) {
+					PoketMon ninja= new Ninja();
+					if(Random.random.nextInt(0, 101)<=ninja.percent) {
+						System.out.println("잡았습니다!");
+						tmp=ninja;
+						return tmp;
+					}else {
+						System.out.println("실패했습니다.");
+						System.out.println("메뉴로돌아갑니다.");
+						ninja=null;
+						return null;
+					}
+				}else {
+					System.out.println("메뉴로돌아갑니다.");
+					return null;
+				}
+			}
+			break;
+			default :
+				return null;
+		}
+		return tmp;
+	}
